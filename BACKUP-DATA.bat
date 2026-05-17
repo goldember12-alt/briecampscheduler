@@ -14,16 +14,25 @@ if errorlevel 1 (
   exit /b 1
 )
 
-if not exist node_modules (
+if not exist app\node_modules (
   echo Required app packages are not installed.
-  echo Run this once in this folder:
+  echo Installing them now. This can take a few minutes.
   echo.
-  echo   npm install
-  echo.
+  call npm --prefix app install
+  if errorlevel 1 (
+    echo Package installation failed.
+    pause
+    exit /b 1
+  )
+)
+
+if not exist app\package.json (
+  echo The app folder is missing package.json.
+  echo Make sure this repository was downloaded completely.
   pause
   exit /b 1
 )
 
-call npm run backup
+call npm --prefix app run backup
 echo.
 pause

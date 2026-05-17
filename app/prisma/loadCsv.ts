@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { loadAndValidateCanonicalCsvs, replaceSetupDataFromCanonicalCsvs } from "../server/src/services/canonicalCsv";
 
 const prisma = new PrismaClient();
-const importDir = resolve(process.argv[2] ?? "data/import");
+const importDir = resolve(process.argv[2] ?? "../data/import");
 
 async function main() {
   console.log(`Reading canonical CSV setup files from ${importDir}`);

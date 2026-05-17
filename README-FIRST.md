@@ -26,13 +26,7 @@ Keep that computer awake and plugged in during signups. Do not close the server 
 2. Download and install the LTS version.
 3. Restart the computer if Windows asks.
 
-After downloading or cloning this repository, open this folder and run this once:
-
-```bat
-npm install
-```
-
-After that, use the `.bat` files in this folder.
+After downloading or cloning this repository, use the `.bat` files in this folder. If app packages are missing, the `.bat` files will install them for you.
 
 ## Files You Should Care About
 
@@ -44,14 +38,13 @@ After that, use the `.bat` files in this folder.
 - `START-SERVER.bat`: starts the local app.
 - `BACKUP-DATA.bat`: creates a database backup.
 - `RESET-ASSIGNMENTS.bat`: clears assignments only.
+- `app`: the application code. You normally do not need to open it.
 
 ## Folders To Ignore Unless A Developer Tells You Otherwise
 
 Do not edit these folders unless instructed:
 
-- `client`
-- `server`
-- `prisma`
+- `app`
 - `node_modules`
 
 ## CSV Files To Edit
@@ -177,10 +170,10 @@ Install Node.js LTS from https://nodejs.org/
 
 `Required app packages are not installed`
 
-Run this once in the repo folder:
+The `.bat` file should try to install packages automatically. If a developer asks you to run it manually, use:
 
 ```bat
-npm install
+npm --prefix app install
 ```
 
 `The local database was not found`

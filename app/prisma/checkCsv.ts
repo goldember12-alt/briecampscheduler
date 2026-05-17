@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 import { loadAndValidateCanonicalCsvs } from "../server/src/services/canonicalCsv";
 
-const importDir = resolve(process.argv[2] ?? "data/import");
+const importDir = resolve(process.argv[2] ?? "../data/import");
 const result = loadAndValidateCanonicalCsvs(importDir);
 
 console.log(`Checking canonical CSV setup files in ${importDir}`);

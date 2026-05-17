@@ -12,7 +12,7 @@ if (!existsSync(dbFile)) {
 }
 
 const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-const backupPath = resolve("backups", `camp-assignments-${timestamp}.db`);
+const backupPath = resolve("../backups", `camp-assignments-${timestamp}.db`);
 
 mkdirSync(dirname(backupPath), { recursive: true });
 copyFileSync(dbFile, backupPath);

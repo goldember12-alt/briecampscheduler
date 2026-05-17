@@ -13,9 +13,12 @@ Local MVP for real-time camper activity signup and later counselor staffing.
 - SQLite local database
 - TypeScript throughout
 
-## Scripts
+## Developer Scripts
+
+The Node app lives in `app/` so the repository root can stay clean for camp admins.
 
 ```bash
+cd app
 npm run migrate
 npm run seed
 npm run load:csv
@@ -24,7 +27,9 @@ npm test
 npm run build
 ```
 
-`npm run dev` starts the API on `http://localhost:3001` and Vite on `http://localhost:5173`.
+From `app/`, `npm run dev` starts the API on `http://localhost:3001` and Vite on `http://localhost:5173`.
+
+From the repository root, camp admins should use the `.bat` files instead.
 
 ## Notes
 
