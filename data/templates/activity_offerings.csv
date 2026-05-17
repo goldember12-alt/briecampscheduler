@@ -1,0 +1,5 @@
+offeringId,timeSlotId,activityId,camperCapacity,counselorCapacity,location,notes
+offer_001,slot_2025_05_19_a1,activity_archery,12,2,Archery Range,
+offer_002,slot_2025_05_19_a1,activity_games,20,2,Pavilion,
+offer_003,slot_2025_05_19_a2,activity_horses,6,2,Stables,Horses shuttle required
+offer_004,slot_2025_05_19_bmc,activity_high_ropes,10,3,Ropes Course,Starts at 1:00

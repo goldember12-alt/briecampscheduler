@@ -1,0 +1,6 @@
+activityId,name,defaultCamperCapacity,defaultCounselorCapacity,active,activityFamily
+activity_archery,Archery,12,2,true,Archery
+activity_horses,Horses,6,2,true,Horses
+activity_high_ropes,High Ropes,10,3,true,High Ropes
+activity_canoes,Canoes,8,2,true,Canoes
+activity_games,Games,20,2,true,Games

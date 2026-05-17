@@ -1,0 +1,4 @@
+timeSlotId,date,label,startTime,endTime,sortOrder,displayTitle,description
+slot_2026_06_15_a1,2026-06-15,Activity 1,09:15,10:30,1,Monday Activity 1,Morning activity block
+slot_2026_06_15_a2,2026-06-15,Activity 2,10:45,12:00,2,Monday Activity 2,Late morning activity block
+slot_2026_06_16_a1,2026-06-16,Activity 1,09:15,10:30,1,Tuesday Activity 1,Morning activity block

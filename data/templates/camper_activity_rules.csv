@@ -1,0 +1,4 @@
+ruleId,camperId,activityFamily,ruleType,rawValue,notes
+rule_001,camper_001,Horses,exclude,NO Horses,
+rule_002,camper_002,Canoes,exclude,NO Canoes,
+rule_003,camper_003,High Ropes,requires_review,needs waivers,

@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+client/dist/
+server/dist/
+.vite/
+generated/
+
+# Test and coverage output
+coverage/
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dev*.log
+dev.pid
+.npm-cache/
+.tmp/
+tmp/
+temp/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# SQLite databases and sidecar files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+prisma/dev.db
+prisma/test.db
+prisma/prisma/
+
+# Backups are local operational artifacts
+backups/*
+!backups/.gitkeep
+
+# Generated data exports
+data/generated/
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

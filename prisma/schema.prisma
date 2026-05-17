@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  counselor
+  admin
+}
+
+enum CamperActivityRuleType {
+  exclude
+  requires_review
+  preassigned_or_signed_up
+  note
+}
+
+model Camper {
+  id          Int                  @id @default(autoincrement())
+  externalId  String?              @unique
+  name        String
+  active      Boolean              @default(true)
+  assignments Assignment[]
+  rules       CamperActivityRule[]
+}
+
+model Counselor {
+  id          Int                    @id @default(autoincrement())
+  externalId  String?                @unique
+  name        String
+  active      Boolean                @default(true)
+  assignments CounselorAssignment[]
+}
+
+model User {
+  id                    Int                    @id @default(autoincrement())
+  externalId            String?                @unique
+  name                  String
+  role                  UserRole
+  assignments           Assignment[]
+  counselorAssignments  CounselorAssignment[]
+}
+
+model Activity {
+  id                       Int                  @id @default(autoincrement())
+  externalId               String?              @unique
+  name                     String
+  capacity                 Int
+  defaultCamperCapacity    Int                  @default(0)
+  defaultCounselorCapacity Int                  @default(0)
+  active                   Boolean              @default(true)
+  activityFamily           String               @default("")
+  offerings                ActivityOffering[]
+  rules                    CamperActivityRule[]
+}
+
+model TimeSlot {
+  id                    Int                    @id @default(autoincrement())
+  externalId            String?                @unique
+  date                  DateTime
+  label                 String
+  startTime             String
+  endTime               String
+  sortOrder             Int
+  displayTitle          String?
+  description           String?
+  offerings             ActivityOffering[]
+  assignments           Assignment[]
+  counselorAssignments  CounselorAssignment[]
+}
+
+model ActivityOffering {
+  id                    Int                    @id @default(autoincrement())
+  externalId            String?                @unique
+  activityId            Int
+  timeSlotId            Int
+  camperCapacity        Int
+  counselorCapacity     Int
+  location              String?
+  notes                 String?
+  activity              Activity               @relation(fields: [activityId], references: [id])
+  timeSlot              TimeSlot               @relation(fields: [timeSlotId], references: [id])
+  assignments           Assignment[]
+  counselorAssignments  CounselorAssignment[]
+}
+
+model Assignment {
+  id              Int              @id @default(autoincrement())
+  camperId        Int
+  offeringId      Int
+  timeSlotId      Int
+  createdByUserId Int
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  camper          Camper           @relation(fields: [camperId], references: [id])
+  offering        ActivityOffering @relation(fields: [offeringId], references: [id], onDelete: Cascade)
+  timeSlot        TimeSlot         @relation(fields: [timeSlotId], references: [id])
+  createdBy       User             @relation(fields: [createdByUserId], references: [id])
+
+  @@unique([camperId, timeSlotId])
+}
+
+model CounselorAssignment {
+  id              Int              @id @default(autoincrement())
+  counselorId     Int
+  offeringId      Int
+  timeSlotId      Int
+  createdByUserId Int
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  counselor       Counselor        @relation(fields: [counselorId], references: [id])
+  offering        ActivityOffering @relation(fields: [offeringId], references: [id], onDelete: Cascade)
+  timeSlot        TimeSlot         @relation(fields: [timeSlotId], references: [id])
+  createdBy       User             @relation(fields: [createdByUserId], references: [id])
+
+  @@unique([counselorId, timeSlotId])
+}
+
+model CamperActivityRule {
+  id              Int                    @id @default(autoincrement())
+  externalId      String?                @unique
+  camperId        Int
+  activityId      Int?
+  activityNameRaw String
+  activityFamily  String                 @default("")
+  ruleType        CamperActivityRuleType
+  date            DateTime?
+  rawValue        String
+  notes           String?
+  sourceFile      String?
+  sourceRow       Int?
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  camper          Camper                 @relation(fields: [camperId], references: [id])
+  activity        Activity?              @relation(fields: [activityId], references: [id])
+}

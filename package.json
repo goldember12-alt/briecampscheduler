@@ -1,0 +1,49 @@
+{
+  "name": "brie-camp-activity-assignments",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n server,client \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite --host 0.0.0.0",
+    "dev:server": "cross-env DATABASE_URL=file:./dev.db tsx watch server/src/index.ts",
+    "migrate": "cross-env DATABASE_URL=file:./dev.db prisma generate && cross-env DATABASE_URL=file:./dev.db tsx prisma/migrate.ts",
+    "seed": "cross-env DATABASE_URL=file:./dev.db tsx prisma/seed.ts",
+    "check:csv": "cross-env DATABASE_URL=file:./dev.db tsx prisma/checkCsv.ts",
+    "load:csv": "cross-env DATABASE_URL=file:./dev.db tsx prisma/loadCsv.ts",
+    "reset:assignments": "cross-env DATABASE_URL=file:./dev.db tsx scripts/resetAssignments.ts",
+    "backup": "cross-env DATABASE_URL=file:./dev.db tsx scripts/backupData.ts",
+    "start:local": "npm run build && cross-env DATABASE_URL=file:./dev.db SERVE_STATIC=true tsx server/src/index.ts",
+    "test": "cross-env DATABASE_URL=file:./test.db prisma generate && cross-env DATABASE_URL=file:./test.db tsx prisma/migrate.ts && cross-env DATABASE_URL=file:./test.db vitest run",
+    "build": "tsc --noEmit && vite build",
+    "prisma:generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "@vitejs/plugin-react": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "lucide-react": "^0.561.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.3",
+    "vite": "^7.2.7"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/supertest": "^6.0.3",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "jsdom": "^27.3.0",
+    "prisma": "^6.19.3",
+    "supertest": "^7.1.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  }
+}

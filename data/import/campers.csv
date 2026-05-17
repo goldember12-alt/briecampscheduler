@@ -1,0 +1,8 @@
+camperId,name,active
+camper_001,Alex Rivera,true
+camper_002,Jordan Kim,true
+camper_003,Sam Patel,true
+camper_004,Taylor Morgan,true
+camper_005,Casey Nguyen,true
+camper_006,Riley Brooks,true
+camper_007,Inactive Example,false

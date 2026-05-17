@@ -1,0 +1,4 @@
+timeSlotId,date,label,startTime,endTime,sortOrder,displayTitle,description
+slot_2025_05_19_a1,2025-05-19,Activity 1,09:15,10:30,1,Monday Activity 1,Morning activity block
+slot_2025_05_19_a2,2025-05-19,Activity 2,10:45,12:00,2,Monday Activity 2,Late morning activity block
+slot_2025_05_19_bmc,2025-05-19,Camp Bruce McCoy Time,13:30,15:00,3,Monday Camp Bruce McCoy Time,Afternoon choice block
