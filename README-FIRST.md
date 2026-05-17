@@ -68,6 +68,8 @@ The app uses strict canonical CSVs, not arbitrary historical spreadsheets. Colum
 
 Use `data/templates` as examples.
 
+For step-by-step help filling out each CSV file, read `DATA-ENTRY-GUIDE.md`.
+
 ## Checking CSV Files
 
 Double-click:
