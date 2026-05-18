@@ -190,6 +190,16 @@ LOAD-DATA.bat
 
 Read the row-level errors in the window. Fix the CSV file and row listed, then run `CHECK-DATA.bat` again.
 
+`This app package is missing generated Prisma files`
+
+The app package was not prepared completely before it was given to you. Send this message to the developer. They need to rebuild the release package on a machine with internet access, or run the repair/generate step from an allowed network.
+
+`self-signed certificate in certificate chain`
+
+Some managed networks, VPNs, proxies, or antivirus tools inspect HTTPS traffic using their own certificate. If a developer repair/generate step tries to download Prisma files on that network, Node.js may reject the certificate.
+
+For normal admin use, `LOAD-DATA.bat` should not need to download Prisma files. If a developer needs to repair the package on the managed network, IT can provide the organization's root certificate and the developer can set `NODE_EXTRA_CA_CERTS` to that certificate file before running the repair/generate step.
+
 `Counselors cannot open the network URL`
 
 Check that devices are on the same Wi-Fi, the server window is still open, and Windows Firewall is not blocking Node.js.

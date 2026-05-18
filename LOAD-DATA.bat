@@ -41,6 +41,9 @@ if not exist app\package.json (
   exit /b 1
 )
 
+call npm --prefix app run check:prisma-generated
+if errorlevel 1 goto failed
+
 call npm --prefix app run migrate
 if errorlevel 1 goto failed
 

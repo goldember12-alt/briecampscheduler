@@ -7,8 +7,9 @@
     "dev": "concurrently -n server,client \"npm:dev:server\" \"npm:dev:client\"",
     "dev:client": "vite --host 0.0.0.0",
     "dev:server": "cross-env DATABASE_URL=file:./dev.db tsx watch server/src/index.ts",
-    "migrate": "cross-env DATABASE_URL=file:./dev.db prisma generate && cross-env DATABASE_URL=file:./dev.db tsx prisma/migrate.ts",
+    "migrate": "cross-env DATABASE_URL=file:./dev.db tsx prisma/migrate.ts",
     "seed": "cross-env DATABASE_URL=file:./dev.db tsx prisma/seed.ts",
+    "check:prisma-generated": "tsx scripts/checkPrismaGenerated.ts",
     "check:csv": "cross-env DATABASE_URL=file:./dev.db tsx prisma/checkCsv.ts",
     "load:csv": "cross-env DATABASE_URL=file:./dev.db tsx prisma/loadCsv.ts",
     "reset:assignments": "cross-env DATABASE_URL=file:./dev.db tsx scripts/resetAssignments.ts",
@@ -16,7 +17,8 @@
     "start:local": "npm run build && cross-env DATABASE_URL=file:./dev.db SERVE_STATIC=true tsx server/src/index.ts",
     "test": "cross-env DATABASE_URL=file:./test.db prisma generate && cross-env DATABASE_URL=file:./test.db tsx prisma/migrate.ts && cross-env DATABASE_URL=file:./test.db vitest run",
     "build": "tsc --noEmit && vite build",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "cross-env DATABASE_URL=file:./dev.db prisma generate",
+    "prepare-release": "npm run prisma:generate && npm run build"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

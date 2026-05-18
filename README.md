@@ -19,6 +19,7 @@ The Node app lives in `app/` so the repository root can stay clean for camp admi
 
 ```bash
 cd app
+npm run prepare-release
 npm run migrate
 npm run seed
 npm run load:csv
@@ -30,6 +31,28 @@ npm run build
 From `app/`, `npm run dev` starts the API on `http://localhost:3001` and Vite on `http://localhost:5173`.
 
 From the repository root, camp admins should use the `.bat` files instead.
+
+## Release Preparation
+
+Before packaging this app for a Windows admin, run:
+
+```bash
+cd app
+npm run prepare-release
+```
+
+This runs `prisma generate` and `npm run build` before the package is handed off. `LOAD-DATA.bat` expects the generated Prisma client and Windows query engine to already be present in the release package, so normal data loading does not need to download Prisma engines from `binaries.prisma.sh`.
+
+If `LOAD-DATA.bat` prints `This app package is missing generated Prisma files`, rebuild the release package on a machine with internet access, or run:
+
+```bash
+cd app
+npm run prisma:generate
+```
+
+Some managed networks, VPNs, proxies, or antivirus tools inspect HTTPS traffic with an organization certificate. In that environment, `prisma generate` may fail with `self-signed certificate in certificate chain` while downloading Prisma engines. The preferred fix is to run release preparation on an allowed network. If generation must happen on the managed network, ask IT for the organization's root certificate and set `NODE_EXTRA_CA_CERTS` to that certificate file before running `npm run prisma:generate`.
+
+Do not use `NODE_TLS_REJECT_UNAUTHORIZED=0` or disable SSL verification.
 
 ## Notes
 
